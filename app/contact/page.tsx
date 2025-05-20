@@ -33,6 +33,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import emailjs from 'emailjs-com';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -79,26 +80,24 @@ export default function ContactPage() {
   })
 
   async function onContactSubmit(values: z.infer<typeof contactFormSchema>) {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     try {
-      const response = await fetch("https://formspree.io/f/your-form-id", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      await emailjs.send(
+        'service_dw0yuas',
+        'template_qrwqide',
+        {
+          name: values.name,
+          email: values.email,
+          message: values.message,
         },
-        body: JSON.stringify(values),
-      })
-
-      if (response.ok) {
-        toast.success("Message sent successfully!")
-        contactForm.reset()
-      } else {
-        throw new Error("Failed to send message")
-      }
+        '6By1enMFeieSwMnOW'
+      );
+      toast.success("Message sent successfully!");
+      contactForm.reset();
     } catch (error) {
-      toast.error("Failed to send message. Please try again.")
+      toast.error("Failed to send message. Please try again.");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
 
@@ -138,7 +137,7 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="text-lg text-muted-foreground">
-            Have a project in mind? Let's discuss how I can help bring your ideas to life.
+            Have a project in mind? Let&apos;s discuss how I can help bring your ideas to life.
           </p>
         </div>
 
@@ -153,7 +152,7 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle>Send a Message</CardTitle>
                 <CardDescription>
-                  Send me a message and I'll get back to you as soon as possible.
+                  Send me a message and I&apos;ll get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -307,10 +306,10 @@ export default function ContactPage() {
           <p className="text-muted-foreground">
             Prefer email? Reach out directly at{" "}
             <a
-              href="mailto:hello@example.com"
+              href="mailto:team.webinnovativetech@gmail.com"
               className="text-foreground hover:underline"
             >
-              hello@example.com
+              team.webinnovativetech@gmail.com
             </a>
           </p>
         </div>

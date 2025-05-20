@@ -63,7 +63,7 @@ export function Navbar() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-            <ThemeToggle />
+            {/* <ThemeToggle /> night/day color change when click */} 
             <Button asChild>
               <Link href="/contact">Let&apos;s Talk</Link>
             </Button>

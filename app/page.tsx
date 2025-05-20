@@ -1,4 +1,4 @@
-'use client'; // Add this at the top of your file
+'use client';
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Code2, Globe2, Laptop, Star } from "lucide-react";
+import Cal, { getCalApi } from "@calcom/embed-react";
 
 export default function Home() {
   const [headingText, setHeadingText] = useState("Crafting Digital Experiences");
@@ -22,26 +23,31 @@ export default function Home() {
 
     let index = 0;
     const intervalId = setInterval(() => {
-      setIsFading(true); // Start the fade-out effect
+      setIsFading(true);
       setTimeout(() => {
         setHeadingText(phrases[index]);
         index = (index + 1) % phrases.length;
-        setIsFading(false); // Start the fade-in effect
-      }, 300); // Wait for 300ms (fade-out duration)
-    }, 5000); // Change every 3 seconds
+        setIsFading(false);
+      }, 300);
+    }, 5000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const cal = await getCalApi({ namespace: "30min" });
+      cal("ui", { theme: "light", hideEventTypeDetails: false, layout: "month_view" });
+    })();
   }, []);
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="flex flex-col items-center gap-4 text-center">
-          <h1
-              className={`text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none transition-opacity duration-500 ${
+            <h1
+              className={`text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl transition-opacity duration-500 ${
                 isFading ? "opacity-0" : "opacity-100"
               }`}
             >
@@ -62,7 +68,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
+      <section className="bg-gray-100 py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex flex-col items-center gap-4 text-center">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Book a Call</h2>
+              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+                Schedule a call with me to discuss your project needs and how I can help.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" asChild>
+                  <Link href="/contact">Book a Text @ 970-716-0788</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+{/* setting up calender invite */}
+          {/* <div className="w-full max-w-4xl mx-auto h-[700px] overflow-scroll rounded-xl shadow-md border p-4 bg-white">
+            <Cal
+              namespace="30min"
+              calLink="https://cal.com/israel-belete-webinnovativetech/30min"
+              style={{ width: "100%", height: "100%", overflow: "scroll" }}
+              config={{ layout: "month_view", theme: "light" }}
+            />
+          </div> */}
+        </div>
+      </section>
+
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="grid gap-12">
@@ -101,7 +134,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="grid gap-12">
@@ -128,19 +160,16 @@ export default function Home() {
               ].map((project, index) => (
                 <Card key={index} className="overflow-hidden">
                   <div className="aspect-video relative">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                    />
+                    <Image src={project.image} alt={project.title} fill className="object-cover" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold">{project.title}</h3>
                     <p className="mt-2 text-muted-foreground">{project.description}</p>
                     <div className="mt-4 flex gap-2">
                       {project.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary">{tag}</Badge>
+                        <Badge key={tag} variant="secondary">
+                          {tag}
+                        </Badge>
                       ))}
                     </div>
                     <Button className="mt-4" variant="outline" asChild>
@@ -156,7 +185,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="grid gap-12">
@@ -171,32 +199,25 @@ export default function Home() {
                 {
                   name: "Sarah Johnson",
                   role: "CEO, TechStart",
-                  content: "Working with John was a game-changer for our business. His attention to detail and technical expertise helped us launch our product ahead of schedule.",
+                  content:
+                    "Working with Israel was a game-changer for our business. His attention to detail and technical expertise helped us launch our product ahead of schedule.",
                 },
                 {
-                  name: "Michael Chen",
-                  role: "Founder, DesignCo",
-                  content: "John's ability to translate our vision into a beautiful, functional website exceeded our expectations. His communication and project management skills are top-notch.",
-                },
-                {
-                  name: "Emily Brown",
-                  role: "Marketing Director, GrowthLabs",
-                  content: "The website John built for us has significantly improved our conversion rates. His understanding of both design and development made the process smooth.",
+                  name: "David Lee",
+                  role: "CTO, FinEdge",
+                  content:
+                    "Israel is a true professional. His code is clean, well-documented, and easy to maintain. Highly recommended!",
                 },
               ].map((testimonial, index) => (
-                <Card key={index} className="flex flex-col justify-between p-6">
-                  <div>
-                    <div className="flex gap-1">
-                      {Array(5).fill(null).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                      ))}
+                <Card key={index} className="p-6">
+                  <div className="flex items-center gap-4">
+                    <Star className="h-6 w-6 text-yellow-500" />
+                    <div>
+                      <p className="font-bold">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                     </div>
-                    <p className="mt-4">{testimonial.content}</p>
                   </div>
-                  <div className="mt-6 border-t pt-4">
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
+                  <p className="mt-4 text-muted-foreground">{testimonial.content}</p>
                 </Card>
               ))}
             </div>
