@@ -28,7 +28,7 @@ export function Navbar() {
           <div className="flex lg:flex-1">
           <Link href="/" className="flex items-center space-x-2">
           <Image
-            src="/wit-logo.png"
+            src="/wit-logo-inblack.png"
             alt="Logo"
             width={100}
             height={50}

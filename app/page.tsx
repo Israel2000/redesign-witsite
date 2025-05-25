@@ -68,32 +68,31 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gray-100 py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex flex-col items-center gap-4 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Book a Call</h2>
-              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                Schedule a call with me to discuss your project needs and how I can help.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/contact">Book a Text @ 970-716-0788</Link>
-                </Button>
-              </div>
-            </div>
+      <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8 flex flex-col items-center">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-3xl mx-auto bg-gray-100 rounded-xl p-8">
+          <div className="text-center md:text-left flex flex-col items-center md:items-start gap-4">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Book a Call</h2>
+            <p className="mx-auto md:mx-0 max-w-[700px] text-muted-foreground md:text-xl">
+              Schedule a call with me to discuss your project needs and how I can help.
+            </p>
+          </div><h2>Quick Text </h2>
+          <div className="flex justify-center md:justify-end">
+            
+            <Button size="lg" asChild>
+              <Link href="/contact">970-716-0788</Link>
+            </Button>
           </div>
-
-{/* setting up calender invite */}
-          {/* <div className="w-full max-w-4xl mx-auto h-[700px] overflow-scroll rounded-xl shadow-md border p-4 bg-white">
-            <Cal
-              namespace="30min"
-              calLink="https://cal.com/israel-belete-webinnovativetech/30min"
-              style={{ width: "100%", height: "100%", overflow: "scroll" }}
-              config={{ layout: "month_view", theme: "light" }}
-            />
-          </div> */}
         </div>
+        {/* 
+        <div className="w-full max-w-4xl mx-auto h-[700px] overflow-scroll rounded-xl shadow-md border p-4 bg-white mt-8">
+          <Cal
+            namespace="30min"
+            calLink="https://cal.com/israel-belete-webinnovativetech/30min"
+            style={{ width: "100%", height: "100%", overflow: "scroll" }}
+            config={{ layout: "month_view", theme: "light" }}
+          />
+        </div>
+        */}
       </section>
 
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
