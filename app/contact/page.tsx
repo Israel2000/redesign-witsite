@@ -218,9 +218,33 @@ export default function ContactPage() {
                   Schedule a consultation to discuss your project in detail.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+                <CardContent>
                 <Form {...appointmentForm}>
-                  <form onSubmit={appointmentForm.handleSubmit(onAppointmentSubmit)} className="space-y-8">
+                  <form
+                    onSubmit={appointmentForm.handleSubmit(async (values) => {
+                      setIsSubmitting(true);
+                      try {
+                        await emailjs.send(
+                          'service_dw0yuas',
+                          'template_qrwqide',
+                          {
+                            name: values.fullName,
+                            email: values.email,
+                            message: `Appointment request for ${format(values.date, "MMMM d, yyyy")} at ${values.time}`,
+                            to_email: "ibelete2000@gmail.com",
+                          },
+                          '6By1enMFeieSwMnOW'
+                        );
+                        toast.success("Appointment request sent successfully!");
+                        appointmentForm.reset();
+                      } catch (error) {
+                        toast.error("Failed to send appointment request. Please try again.");
+                      } finally {
+                        setIsSubmitting(false);
+                      }
+                    })}
+                    className="space-y-8"
+                  >
                     <FormField
                       control={appointmentForm.control}
                       name="fullName"
@@ -247,57 +271,63 @@ export default function ContactPage() {
                         </FormItem>
                       )}
                     />
-                    <FormField
-                      control={appointmentForm.control}
-                      name="date"
-                      render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                          <FormLabel>Date</FormLabel>
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            disabled={(date) => 
-                              date < new Date() || // Can't select past dates
-                              date.getDay() === 0 || // Can't select Sunday
-                              date.getDay() === 6    // Can't select Saturday
-                            }
-                            className="rounded-md border"
-                          />
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={appointmentForm.control}
-                      name="time"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Time</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select a time" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {timeSlots.map((time) => (
-                                <SelectItem key={time} value={time}>
-                                  {time}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <div className="flex-1 flex justify-center items-center" style={{ marginTop: "10px" }}>
+                        <FormField
+                          control={appointmentForm.control}
+                          name="date"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-col items-center">
+                              <FormLabel>Date</FormLabel>
+                              <Calendar
+                                mode="single"
+                                selected={field.value}
+                                onSelect={field.onChange}
+                                disabled={(date) =>
+                                  date < new Date() ||
+                                  date.getDay() === 0 ||
+                                  date.getDay() === 6
+                                }
+                                className="rounded-md border"
+                              />
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <FormField
+                          control={appointmentForm.control}
+                          name="time"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Time</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select a time" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  {timeSlots.map((time) => (
+                                    <SelectItem key={time} value={time}>
+                                      {time}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </div>
                     <Button type="submit" className="w-full" disabled={isSubmitting}>
                       {isSubmitting ? "Booking..." : "Book Appointment"}
                     </Button>
                   </form>
                 </Form>
-              </CardContent>
+                </CardContent>
             </Card>
           </TabsContent>
         </Tabs>
