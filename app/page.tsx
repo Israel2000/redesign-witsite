@@ -71,16 +71,16 @@ export default function Home() {
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8 flex flex-col items-center">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-3xl mx-auto bg-gray-100 rounded-xl p-8">
           <div className="text-center md:text-left flex flex-col items-center md:items-start gap-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Book a Call</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl" style={{ color: "black" }}>Book a Call</h2>
             <p className="mx-auto md:mx-0 max-w-[700px] text-muted-foreground md:text-xl">
               Schedule a call with me to discuss your project needs and how I can help.
             </p>
-          </div><h2>Quick Text </h2>
+          </div>
+            <h2 style={{ color: "black" }}>Quick Text</h2>
           <div className="flex justify-center md:justify-end">
-            
-            <Button size="lg" asChild>
-              <Link href="/contact">970-716-0788</Link>
-            </Button>
+            <Button size="lg" variant="outline" asChild>
+                <Link href="/portfolio">970-716-0788</Link>
+              </Button>
           </div>
         </div>
         {/* 
