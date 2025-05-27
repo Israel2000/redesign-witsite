@@ -1,9 +1,37 @@
 import Link from "next/link"
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import Image from "next/image"
 
 export function Footer() {
   return (
     <footer className="w-full border-t bg-background">
+    <div className="mt-24">
+      <h2 className="text-3xl font-bold text-center mb-8">What We Do</h2>
+
+      <div className="relative w-full overflow-hidden flex justify-center">
+        <div className="flex gap-16 animate-slide w-max">
+          {/* Logos - duplicated for smooth infinite loop */}
+          <Image src="squarespace.png" alt="Squarespace" width={64} height={64} className="h-16 w-auto" />
+          <Image src="wix.png" alt="Wix" width={64} height={64} className="h-16 w-auto" />
+          <Image src="angular_wordmark_white.png" alt="WordPress" width={64} height={64} className="h-16 w-auto" />
+          <Image src="wordpress.png" alt="Squarespace" width={64} height={64} className="h-16 w-auto" />
+          <Image src="shopify (1).png" alt="Squarespace" width={64} height={64} className="h-16 w-auto" />
+          <Image src="js.png" alt="Squarespace" width={64} height={64} className="h-16 w-auto" />
+
+          {/* Repeat */}
+          <Image src="squarespace.png" alt="Squarespace" width={64} height={64} className="h-16 w-auto" />
+          <Image src="wix.png" alt="Wix" width={64} height={64} className="h-16 w-auto" />
+          <Image src="angular_wordmark_white.png" alt="WordPress" width={64} height={64} className="h-16 w-auto" />
+           <Image src="wordpress.png" alt="Squarespace" width={64} height={64} className="h-16 w-auto" />
+          <Image src="shopify (1).png" alt="Squarespace" width={64} height={64} className="h-16 w-auto" />
+          <Image src="js.png" alt="Squarespace" width={64} height={64} className="h-16 w-auto" />
+        </div>
+      </div>
+    </div>
+
+
+
+
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div>
