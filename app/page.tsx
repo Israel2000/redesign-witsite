@@ -83,14 +83,14 @@ export default function Home() {
         />
           </div>
           <div className="text-center md:text-left flex flex-col items-center md:items-start gap-4 mt-16 md:mt-0">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl" style={{ color: "black" }}>Book a Call</h2>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl" style={{ color: "hsla(158, 74%, 38%, 1)" }}>Book a Call</h2>
         <p className="mx-auto md:mx-0 max-w-[700px] text-muted-foreground md:text-xl">
           Schedule a call with me to discuss your project needs and how I can help.
         </p>
           </div>
           <div className="flex flex-col items-center md:items-end gap-2">
-        <h2 style={{ color: "black" }}>Quick Text</h2>
-        <Button size="lg" variant="outline" asChild>
+        <h2 style={{ color: "#a3a3a3" }} > TEXT/ CALL</h2>
+        <Button size="lg" variant="outline" asChild style={{ color: "hsla(158, 74%, 38%, 1)" }}>
           <a href="tel:9707160788" className="flex items-center gap-2">
             <Phone className="h-4 w-4" />
             970-716-0788
