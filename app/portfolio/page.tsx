@@ -22,10 +22,10 @@ const projects = [
   },
   {
     title: "Healthcare Platform",
-    description: "Telemedicine platform enabling secure video consultations, appointment scheduling, and electronic health records management.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
-    tags: ["React", "Node.js", "WebRTC", "MongoDB"],
-    longDescription: "Created a HIPAA-compliant telemedicine solution that facilitated over 10,000 virtual consultations in its first year. The platform includes secure video calls, prescription management, and integrated billing.",
+    description: "Homecare platform for elderly patients with remote monitoring and telehealth features and car services",
+    image: "lesya-image.png",
+    tags: ["Angular 18", "Node.js", "FormJS"],
+    longDescription: "Created a healthcare platform that connects elderly patients with caregivers, featuring remote health monitoring, video consultations, and appointment scheduling. The platform has improved patient care and reduced hospital visits by 30%.",
   },
   {
     title: "Real Estate App",
@@ -41,10 +41,10 @@ export default function PortfolioPage() {
     <div className="container mx-auto px-4 py-16">
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
-          My Portfolio
+          Our Portfolio
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Explore my recent projects and see how I've helped businesses solve complex problems with modern web solutions.
+          Explore recent projects and see how we&#39;ve helped businesses solve complex problems with modern web solutions.
         </p>
       </div>
 
@@ -68,11 +68,11 @@ export default function PortfolioPage() {
                 ))}
               </div>
               <p className="text-sm text-muted-foreground mb-4">{project.longDescription}</p>
-              <Button variant="outline" asChild>
+              {/* <Button variant="outline" asChild>
                 <Link href={`/portfolio/${index}`}>
                   View Case Study <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-              </Button>
+              </Button> */}
             </div>
           </Card>
         ))}

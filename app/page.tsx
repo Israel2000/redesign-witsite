@@ -179,16 +179,16 @@ export default function Home() {
         <div className="grid gap-8 md:grid-cols-2">
           {[
         {
-          title: "E-commerce Platform",
-          description: "A modern e-commerce platform built with Next.js and Stripe",
-          image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800",
-          tags: ["Next.js", "Stripe", "Tailwind CSS"],
+          title: "Imported Coffee Sale",
+          description: "A modern e-commerce platform built with Angular 19, NodeJS and Stripe",
+          image: "titus-image.png",
+          tags: ["Angular 19", "NodeJS", "Stripe", "Bootstrap5"],
         },
         {
-          title: "SaaS Dashboard",
+          title: "Personal Transportation Site",
           description: "Analytics dashboard for a SaaS product",
-          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
-          tags: ["React", "TypeScript", "Chart.js"],
+          image: "rjm-image.png",
+          tags: ["Wordpress", "PHP", "CSS3"],
         },
           ].map((project, index) => (
         <Card
@@ -219,9 +219,17 @@ export default function Home() {
           ))}
         </div>
         <Button className="mt-2" variant="outline" asChild>
-          <Link href={`/portfolio/${index}`}>
-        View Case Study <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+          <a
+            href={
+              index === 0
+                ? "https://www.tituscoffeeco.com/"
+                : "https://rjmworks.com/"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Site <ArrowRight className="ml-2 h-4 w-4" />
+          </a>
         </Button>
           </div>
           {/* Subtle shadow under the card */}
