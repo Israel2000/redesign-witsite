@@ -113,14 +113,16 @@ export default function ContactPage() {
     setIsSubmitting(true)
     try {
       const formattedDate = format(values.date, "MMMM d, yyyy")
-      const response = await fetch("https://formspree.io/f/your-form-id", {
-        method: "POST",
+      const response = await fetch('/api/send', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...values,
-          date: formattedDate,
+          name: values.fullName,
+          email: values.email,
+          message: `Date: ${formattedDate}\nTime: ${values.time}${values.notes ? `\nNotes: ${values.notes}` : ''}`,
+          type: 'appointment',
         }),
       })
 
