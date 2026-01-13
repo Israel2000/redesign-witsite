@@ -130,44 +130,48 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 dark:from-slate-900 dark:via-blue-950 dark:to-slate-900 py-24">
+      <div className="container mx-auto px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4 bg-gradient-to-r from-slate-900 to-blue-800 dark:from-slate-100 dark:to-blue-200 bg-clip-text text-transparent">
             Get in Touch
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-slate-600 dark:text-slate-300">
             Have a project in mind? Let&apos;s discuss how I can help bring your ideas to life.
           </p>
         </div>
 
         <Tabs defaultValue="message" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="message">Send Message</TabsTrigger>
-            <TabsTrigger value="appointment">Book Appointment</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
+            <TabsTrigger value="message" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-teal-600 data-[state=active]:text-white rounded-lg transition-all duration-300 font-semibold">Send Message</TabsTrigger>
+            <TabsTrigger value="appointment" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-teal-600 data-[state=active]:text-white rounded-lg transition-all duration-300 font-semibold">Book Appointment</TabsTrigger>
           </TabsList>
 
           <TabsContent value="message">
-            <Card>
-              <CardHeader>
-                <CardTitle>Send a Message</CardTitle>
-                <CardDescription>
+            <Card className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <CardHeader className="space-y-2 border-b border-slate-200 dark:border-slate-700 pb-6">
+                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                  <span className="w-1 h-6 bg-gradient-to-b from-blue-600 to-teal-600 rounded-full"></span>
+                  Send a Message
+                </CardTitle>
+                <CardDescription className="text-slate-600 dark:text-slate-300">
                   Send me a message and I&apos;ll get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-8">
                 <Form {...contactForm}>
-                  <form onSubmit={contactForm.handleSubmit(onContactSubmit)} className="space-y-8">
+                  <form onSubmit={contactForm.handleSubmit(onContactSubmit)} className="space-y-6">
                     <FormField
                       control={contactForm.control}
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Name</FormLabel>
+                          <FormLabel className="text-slate-700 dark:text-slate-200 font-semibold">Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Your name" {...field} />
+                            <Input placeholder="Your name" {...field} className="h-12 border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 bg-slate-50 dark:bg-slate-900" />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500 dark:text-red-400" />
                         </FormItem>
                       )}
                     />
@@ -176,11 +180,11 @@ export default function ContactPage() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel className="text-slate-700 dark:text-slate-200 font-semibold">Email</FormLabel>
                           <FormControl>
-                            <Input placeholder="your.email@example.com" type="email" {...field} />
+                            <Input placeholder="your.email@example.com" type="email" {...field} className="h-12 border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 bg-slate-50 dark:bg-slate-900" />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500 dark:text-red-400" />
                         </FormItem>
                       )}
                     />
@@ -189,19 +193,19 @@ export default function ContactPage() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Message</FormLabel>
+                          <FormLabel className="text-slate-700 dark:text-slate-200 font-semibold">Message</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="Tell me about your project..."
-                              className="min-h-[150px]"
+                              className="min-h-[150px] border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 bg-slate-50 dark:bg-slate-900 resize-none"
                               {...field}
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500 dark:text-red-400" />
                         </FormItem>
                       )}
                     />
-                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                    <Button type="submit" className="w-full h-12 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]" disabled={isSubmitting}>
                       {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
@@ -211,14 +215,17 @@ export default function ContactPage() {
           </TabsContent>
 
           <TabsContent value="appointment">
-            <Card>
-              <CardHeader>
-                <CardTitle>Book an Appointment</CardTitle>
-                <CardDescription>
+            <Card className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <CardHeader className="space-y-2 border-b border-slate-200 dark:border-slate-700 pb-6">
+                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                  <span className="w-1 h-6 bg-gradient-to-b from-blue-600 to-teal-600 rounded-full"></span>
+                  Book an Appointment
+                </CardTitle>
+                <CardDescription className="text-slate-600 dark:text-slate-300">
                   Schedule a consultation to discuss your project in detail.
                 </CardDescription>
               </CardHeader>
-                <CardContent>
+                <CardContent className="pt-8">
                 <Form {...appointmentForm}>
                   <form
                     onSubmit={appointmentForm.handleSubmit(async (values) => {
@@ -243,18 +250,18 @@ export default function ContactPage() {
                         setIsSubmitting(false);
                       }
                     })}
-                    className="space-y-8"
+                    className="space-y-6"
                   >
                     <FormField
                       control={appointmentForm.control}
                       name="fullName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
+                          <FormLabel className="text-slate-700 dark:text-slate-200 font-semibold">Full Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Your full name" {...field} />
+                            <Input placeholder="Your full name" {...field} className="h-12 border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 bg-slate-50 dark:bg-slate-900" />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500 dark:text-red-400" />
                         </FormItem>
                       )}
                     />
@@ -263,22 +270,22 @@ export default function ContactPage() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel className="text-slate-700 dark:text-slate-200 font-semibold">Email</FormLabel>
                           <FormControl>
-                            <Input placeholder="your.email@example.com" type="email" {...field} />
+                            <Input placeholder="your.email@example.com" type="email" {...field} className="h-12 border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 bg-slate-50 dark:bg-slate-900" />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500 dark:text-red-400" />
                         </FormItem>
                       )}
                     />
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-1 flex justify-center items-center" style={{ marginTop: "10px" }}>
+                    <div className="flex flex-col sm:flex-row gap-6">
+                      <div className="flex-1 flex justify-center items-center">
                         <FormField
                           control={appointmentForm.control}
                           name="date"
                           render={({ field }) => (
                             <FormItem className="flex flex-col items-center">
-                              <FormLabel>Date</FormLabel>
+                              <FormLabel className="text-slate-700 dark:text-slate-200 font-semibold mb-3">Date</FormLabel>
                               <Calendar
                                 mode="single"
                                 selected={field.value}
@@ -288,9 +295,9 @@ export default function ContactPage() {
                                   date.getDay() === 0 ||
                                   date.getDay() === 6
                                 }
-                                className="rounded-md border"
+                                className="rounded-xl border-2 border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 p-3 shadow-lg"
                               />
-                              <FormMessage />
+                              <FormMessage className="text-red-500 dark:text-red-400" />
                             </FormItem>
                           )}
                         />
@@ -301,28 +308,28 @@ export default function ContactPage() {
                           name="time"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Time</FormLabel>
+                              <FormLabel className="text-slate-700 dark:text-slate-200 font-semibold">Time</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger>
+                                  <SelectTrigger className="h-12 border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 bg-slate-50 dark:bg-slate-900">
                                     <SelectValue placeholder="Select a time" />
                                   </SelectTrigger>
                                 </FormControl>
-                                <SelectContent>
+                                <SelectContent className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600">
                                   {timeSlots.map((time) => (
-                                    <SelectItem key={time} value={time}>
+                                    <SelectItem key={time} value={time} className="hover:bg-blue-50 dark:hover:bg-blue-950 cursor-pointer">
                                       {time}
                                     </SelectItem>
                                   ))}
                                 </SelectContent>
                               </Select>
-                              <FormMessage />
+                              <FormMessage className="text-red-500 dark:text-red-400" />
                             </FormItem>
                           )}
                         />
                       </div>
                     </div>
-                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                    <Button type="submit" className="w-full h-12 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]" disabled={isSubmitting}>
                       {isSubmitting ? "Booking..." : "Book Appointment"}
                     </Button>
                   </form>
@@ -333,16 +340,17 @@ export default function ContactPage() {
         </Tabs>
 
         <div className="mt-16 text-center">
-          <p className="text-muted-foreground">
+          <p className="text-slate-600 dark:text-slate-300">
             Prefer email? Reach out directly at{" "}
             <a
               href="mailto:team.webinnovativetech@gmail.com"
-              className="text-foreground hover:underline"
+              className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
             >
               team.webinnovativetech@gmail.com
             </a>
           </p>
         </div>
+      </div>
       </div>
     </div>
   )

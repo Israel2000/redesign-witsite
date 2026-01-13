@@ -38,19 +38,20 @@ const projects = [
 
 export default function PortfolioPage() {
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 dark:from-slate-900 dark:via-blue-950 dark:to-slate-900">
+      <div className="container mx-auto px-4 py-24">
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4 bg-gradient-to-r from-slate-900 to-blue-800 dark:from-slate-100 dark:to-blue-200 bg-clip-text text-transparent">
           Our Portfolio
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Explore recent projects and see how we&#39;ve helped businesses solve complex problems with modern web solutions.
+        <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          Explore recent projects and see how we've helped businesses solve complex problems with modern web solutions.
         </p>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
         {projects.map((project, index) => (
-          <Card key={index} className="overflow-hidden">
+          <Card key={index} className="overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
             <div className="aspect-video relative">
               <Image
                 src={project.image}
@@ -60,14 +61,14 @@ export default function PortfolioPage() {
               />
             </div>
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-              <p className="text-muted-foreground mb-4">{project.description}</p>
+              <h2 className="text-2xl font-bold mb-2 text-slate-900 dark:text-slate-100">{project.title}</h2>
+              <p className="text-slate-600 dark:text-slate-300 mb-4">{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map((tag) => (
                   <Badge key={tag} variant="secondary">{tag}</Badge>
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground mb-4">{project.longDescription}</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">{project.longDescription}</p>
               {/* <Button variant="outline" asChild>
                 <Link href={`/portfolio/${index}`}>
                   View Case Study <ArrowRight className="ml-2 h-4 w-4" />
@@ -76,6 +77,7 @@ export default function PortfolioPage() {
             </div>
           </Card>
         ))}
+      </div>
       </div>
     </div>
   )
