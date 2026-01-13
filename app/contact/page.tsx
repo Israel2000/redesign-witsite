@@ -121,7 +121,7 @@ export default function ContactPage() {
         body: JSON.stringify({
           name: values.fullName,
           email: values.email,
-          message: `Date: ${formattedDate}\nTime: ${values.time}${values.notes ? `\nNotes: ${values.notes}` : ''}`,
+          message: `Date: ${formattedDate}\nTime: ${values.time}`,
           type: 'appointment',
         }),
       })
