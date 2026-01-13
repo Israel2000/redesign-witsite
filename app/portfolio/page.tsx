@@ -45,7 +45,7 @@ export default function PortfolioPage() {
           Our Portfolio
         </h1>
         <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-          Explore recent projects and see how we've helped businesses solve complex problems with modern web solutions.
+          Explore recent projects and see how we&apos;ve helped businesses solve complex problems with modern web solutions.
         </p>
       </div>
 

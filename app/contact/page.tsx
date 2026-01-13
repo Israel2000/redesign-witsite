@@ -33,7 +33,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import emailjs from 'emailjs-com';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -82,18 +81,27 @@ export default function ContactPage() {
   async function onContactSubmit(values: z.infer<typeof contactFormSchema>) {
     setIsSubmitting(true);
     try {
-      await emailjs.send(
-        'service_dw0yuas',
-        'template_qrwqide',
-        {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           name: values.name,
           email: values.email,
           message: values.message,
-        },
-        '6By1enMFeieSwMnOW'
-      );
-      toast.success("Message sent successfully!");
-      contactForm.reset();
+          type: 'contact',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Message sent successfully!");
+        contactForm.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (error) {
       toast.error("Failed to send message. Please try again.");
     } finally {
@@ -231,19 +239,27 @@ export default function ContactPage() {
                     onSubmit={appointmentForm.handleSubmit(async (values) => {
                       setIsSubmitting(true);
                       try {
-                        await emailjs.send(
-                          'service_dw0yuas',
-                          'template_qrwqide',
-                          {
+                        const response = await fetch('/api/send', {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({
                             name: values.fullName,
                             email: values.email,
                             message: `Appointment request for ${format(values.date, "MMMM d, yyyy")} at ${values.time}`,
-                            to_email: "ibelete2000@gmail.com",
-                          },
-                          '6By1enMFeieSwMnOW'
-                        );
-                        toast.success("Appointment request sent successfully!");
-                        appointmentForm.reset();
+                            type: 'appointment',
+                          }),
+                        });
+
+                        const data = await response.json();
+
+                        if (data.success) {
+                          toast.success("Appointment request sent successfully!");
+                          appointmentForm.reset();
+                        } else {
+                          throw new Error('Failed to send appointment request');
+                        }
                       } catch (error) {
                         toast.error("Failed to send appointment request. Please try again.");
                       } finally {
